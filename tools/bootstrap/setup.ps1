@@ -1,7 +1,7 @@
 # Bootstrap installer for DGTCentaurMods using Windows PowerShell
 #
 
-$releaseVersion = '1.1.4'
+$releaseVersion = '1.1.5'
 $username = "pi"
 $hostname = 'dgtcentaur.local'
 $releaseFileName = -join ("dgtcentaurmods_" , $releaseVersion , "_armhf.deb" )
