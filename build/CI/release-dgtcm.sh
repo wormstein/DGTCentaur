@@ -6,7 +6,7 @@
 
 BASEDIR=`pwd`
 
-REPO_USER="EdNekebno"
+REPO_USER="wormstein"
 REPO_NAME="DGTCentaurMods"
 REPO="${REPO_USER}/${REPO_NAME}"
 REPO_URL="https://github.com/${REPO}"
