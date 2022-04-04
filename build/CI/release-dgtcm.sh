@@ -8,11 +8,11 @@
 
 BASEDIR=`pwd`
 
-REPO_USER="wormstein"
+REPO_USER="EdNekebno"
 REPO_NAME="DGTCentaurMods"
 REPO="${REPO_USER}/${REPO_NAME}"
 REPO_URL="https://github.com/${REPO}"
-BRANCH="ci-release-test"
+BRANCH="master"
 VERSIONS_FILE="../../DGTCentaurMods/DEBIAN/versions"
 CURRENT_VERSION=`cat ../../${REPO_NAME}/DEBIAN/versions | jq -r '.stable | .["release"]' | tr -d \"`
 NEW_VERSION=`curl -s https://raw.githubusercontent.com/${REPO}/${BRANCH}/DGTCentaurMods/DEBIAN/versions | jq '.stable.release' | tr -d \"`
@@ -45,7 +45,7 @@ END
     curl \
         -H "Content-Type: application/json" \
         -d "$JSON" \
-        https://discord.com/api/webhooks/960257189149278228/YGuNLkq28bbXDJNxxH0arAt1sx8xwUwswMGTIWfZJFhPkvWaLsVi0cyu6_w2BPlh2n_I
+        $DISCORD_WH
 }
 
 
