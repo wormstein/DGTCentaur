@@ -8,11 +8,11 @@
 
 BASEDIR=`pwd`
 
-REPO_USER="EdNekebno"
+REPO_USER="wormstein"
 REPO_NAME="DGTCentaurMods"
 REPO="${REPO_USER}/${REPO_NAME}"
 REPO_URL="https://github.com/${REPO}"
-BRANCH="master"
+BRANCH="ci-release-test"
 VERSIONS_FILE="../../DGTCentaurMods/DEBIAN/versions"
 CURRENT_VERSION=`cat ../../${REPO_NAME}/DEBIAN/versions | jq -r '.stable | .["release"]' | tr -d \"`
 NEW_VERSION=`curl -s https://raw.githubusercontent.com/${REPO}/${BRANCH}/DGTCentaurMods/DEBIAN/versions | jq '.stable.release' | tr -d \"`
