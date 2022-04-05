@@ -32,7 +32,21 @@ Current pre-release: $CURR_PRE_RELEASE
 Requested pre-release: $NEW_PRE_RELEASE"
 }
 
+# The following vars must not be empty
+if [ -z $CURRENT_VERSION ] || \
+   [ -z $NEW_VERSION ] || \
+   [ -z CURR_PRE_RELEASE ] || \
+   [ -z $NEW_PRE_RELEASE ] || \
+   [ -z $GIT_TOKEN ]; then
+   echo -e "::: Error processing. Aborting"
+    exit 1
+fi
+
 function sayOnDiscord() {
+    if [ -z $DISCORD_WH ]; then
+        return
+    fi
+
     MSG="$1"
     TIMESTAMP=`date +%H:%M:%S`
     JSON=$(cat <<-END
@@ -105,7 +119,7 @@ function prepareGitRRepo() {
 
 
 function prepareAssets() {
-    sayOnDiscord "::: Preparing build assets"
+    sayOnDiscord "::: Building assets"
     # Do the build, zip card-setup-tool
     cd $BASEDIR
     mkdir -p ${WORKSPACE}/assets
@@ -114,12 +128,12 @@ function prepareAssets() {
     cd ${BASEDIR}/..
     ./build.sh full
     cp releases/* CI/${WORKSPACE}/assets
-    sayOnDiscord "::: dgtcentaurmods_${NEW_VERSION}_armhf.deb prepared"
+    sayOnDiscord "::: dgtcentaurmods_${NEW_VERSION}_armhf.deb ready"
 
     # Zip the card setup tool
     cd ${BASEDIR}/../../tools/
     zip -qr ${BASEDIR}/${WORKSPACE}/assets/card-setup-tool_${NEW_VERSION}.zip card-setup-tool
-    sayOnDiscord "::: card-setup-tool_${NEW_VERSION}.zip prepared"
+    sayOnDiscord "::: card-setup-tool_${NEW_VERSION}.zip ready"
 }
 
 
@@ -157,7 +171,7 @@ function prepareRelease() {
     # Write json for the archive
     echo "$RELEASE_JSON" > ${WORKSPACE}/release.json
 
-    sayOnDiscord "::: Release json request prepared"
+    sayOnDiscord "::: JSON request is ready"
 }
 
 
