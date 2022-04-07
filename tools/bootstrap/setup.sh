@@ -3,7 +3,7 @@
 # Bootstrap installer for Linux
 #
 
-VERSION="1.1.8"
+VERSION="1.1.9"
 
 echo -e "This setup will install the latest release ($VERSION).\nIf you want to install a different version, please specify.\n"
 read -p "Please input what release you want to install ($VERSION): "
